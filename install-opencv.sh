@@ -1,17 +1,14 @@
 ######################################
-# INSTALL OPENCV ON UBUNTU OR DEBIAN #
+# INSTALL OPENCV ON Raspian          #
 ######################################
 
 # |          THIS SCRIPT IS TESTED CORRECTLY ON          |
 # |------------------------------------------------------|
 # | OS               | OpenCV       | Test | Last test   |
 # |------------------|--------------|------|-------------|
-# | Ubuntu 18.04 LTS | OpenCV 3.4.2 | OK   | 18 Jul 2018 |
-# | Debian 9.5       | OpenCV 3.4.2 | OK   | 18 Jul 2018 |
+# | Raspian          | OpenCV 3.1.0 | OK   | 20 Jul 2018 |
 # |----------------------------------------------------- |
-# | Debian 9.0       | OpenCV 3.2.0 | OK   | 25 Jun 2017 |
-# | Debian 8.8       | OpenCV 3.2.0 | OK   | 20 May 2017 |
-# | Ubuntu 16.04 LTS | OpenCV 3.2.0 | OK   | 20 May 2017 |
+
 
 
 # VERSION TO BE INSTALLED
