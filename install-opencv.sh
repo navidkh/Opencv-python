@@ -16,7 +16,7 @@
 
 # VERSION TO BE INSTALLED
 
-OPENCV_VERSION='3.4.2'
+OPENCV_VERSION='3.1.0'
 
 
 # 1. KEEP UBUNTU OR DEBIAN UP TO DATE
@@ -32,47 +32,49 @@ sudo apt-get -y autoremove
 # Build tools:
 sudo apt-get install -y build-essential cmake pkg-config
 
-# GUI (if you want to use GTK instead of Qt, replace 'qt5-default' with 'libgtkglext1-dev' and remove '-DWITH_QT=ON' option in CMake):
-sudo apt-get install -y libgtk2.0-dev libvtk6-dev
-
 # Media I/O:
-sudo apt-get install -y zlib1g-dev libjpeg-dev libwebp-dev libpng-dev libtiff5-dev libjasper-dev libopenexr-dev libgdal-dev
+sudo apt-get install -y libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev
 
 # Video I/O:
-sudo apt-get install -y libdc1394-22-dev libavcodec-dev libavformat-dev libswscale-dev libtheora-dev libvorbis-dev libxvidcore-dev libx264-dev yasm libopencore-amrnb-dev libopencore-amrwb-dev libv4l-dev libxine2-dev
+sudo apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev
 
 # Parallelism and linear algebra libraries:
-sudo apt-get install -y libtbb-dev libeigen3-dev libatlas-base-dev gfortran
+sudo apt-get install -y libgtk2.0-dev libatlas-base-dev gfortran
 
 # Python:
-sudo apt-get install -y python-dev python-tk python-numpy python3-dev python3-tk python3-numpy
-
-# Java:
-sudo apt-get install -y ant default-jdk
-
-# Documentation:
-sudo apt-get install -y doxygen
+sudo apt-get install -y python2.7-dev python3-dev
 
 
 # 3. INSTALL THE LIBRARY
 
 sudo apt-get install -y unzip wget
-wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip
-unzip ${OPENCV_VERSION}.zip
-rm ${OPENCV_VERSION}.zip
-mv opencv-${OPENCV_VERSION} OpenCV
-wget https://github.com/opencv/opencv_contrib/archive/${OPENCV_VERSION}.zip
-unzip ${OPENCV_VERSION}.zip
-rm ${OPENCV_VERSION}.zip
-mv opencv-${OPENCV_VERSION} opencv_contrib
-cd OpenCV
+wget -O opencv.zip https://github.com/Itseez/opencv/archive/${OPENCV_VERSION}.zip
+unzip opencv.zip
+rm opencv.zip
+mv opencv-${OPENCV_VERSION} opencv
+wget -O opencv_contrib.zip https://github.com/Itseez/opencv_contrib/archive/${OPENCV_VERSION}.zip
+unzip opencv_contrib.zip
+rm opencv_contrib.zip
+mv opencv_contrib-${OPENCV_VERSION} opencv_contrib
+
+# Pip
+wget https://bootstrap.pypa.io/get-pip.py
+sudo python get-pip.py
+
+# Numpy
+pip install numpy
+
+cd opencv
 mkdir build
 cd build
-cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D ENABLE_PRECOMPILED_HEADERS=OFF -D WITH_FFMPEG=OFF ..
-make -j4
+cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D ENABLE_PRECOMPILED_HEADERS=OFF -D INSTALL_PYTHON_EXAMPLES=ON -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules -D BUILD_EXAMPLES=ON -D WITH_FFMPEG=OFF ..
+make 
 sudo make install
 sudo ldconfig
 
+rm -rf opencv opencv_contrib
+
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
 # 4. EXECUTE SOME OPENCV EXAMPLES AND COMPILE A DEMONSTRATION
 
