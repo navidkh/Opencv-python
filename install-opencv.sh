@@ -8,12 +8,14 @@
 # |------------------|--------------|------|-------------|
 # | Raspian          | OpenCV 3.1.0 | OK   | 20 Jul 2018 |
 # |----------------------------------------------------- |
+# | Raspian          | OpenCV 3.4.2 | OK   | 20 Jul 2018 |
+# |----------------------------------------------------- |
 
 
 
 # VERSION TO BE INSTALLED
 
-OPENCV_VERSION='3.1.0'
+OPENCV_VERSION='3.4.2'
 
 
 # 1. KEEP UBUNTU OR DEBIAN UP TO DATE
@@ -45,11 +47,11 @@ sudo apt-get install -y python2.7-dev python3-dev
 # 3. INSTALL THE LIBRARY
 
 sudo apt-get install -y unzip wget
-wget -O opencv.zip https://github.com/Itseez/opencv/archive/${OPENCV_VERSION}.zip
+wget -O opencv.zip https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip
 unzip opencv.zip
 rm opencv.zip
 mv opencv-${OPENCV_VERSION} opencv
-wget -O opencv_contrib.zip https://github.com/Itseez/opencv_contrib/archive/${OPENCV_VERSION}.zip
+wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/${OPENCV_VERSION}.zip
 unzip opencv_contrib.zip
 rm opencv_contrib.zip
 mv opencv_contrib-${OPENCV_VERSION} opencv_contrib
