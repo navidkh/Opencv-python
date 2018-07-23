@@ -8,7 +8,7 @@
 # |------------------|--------------|------|-------------|
 # | Raspian          | OpenCV 3.1.0 | OK   | 20 Jul 2018 |
 # |----------------------------------------------------- |
-# | Raspian          | OpenCV 3.4.2 | OK   | 20 Jul 2018 |
+# | Raspian          | OpenCV 3.4.2 | OK   | 23 Jul 2018 |
 # |----------------------------------------------------- |
 
 
@@ -71,7 +71,8 @@ make
 sudo make install
 sudo ldconfig
 
-rm -rf opencv opencv_contrib
+sudo rm -rf opencv
+sudo rm -rf opencv_contrib
 
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
